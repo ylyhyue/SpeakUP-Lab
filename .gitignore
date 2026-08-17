@@ -1,0 +1,7 @@
+# 项目内部记忆与配置，不随公开仓库发布
+.workbuddy/
+
+# 常规忽略
+.DS_Store
+*.log
+__pycache__/
