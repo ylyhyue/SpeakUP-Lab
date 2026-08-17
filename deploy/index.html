@@ -7,6 +7,7 @@
 <meta name="description" content="河南城建学院大学科技园 × 人工智能学院 联合出品。用 AI 当陪练，40 小时把哑巴英语练成开口即战。高中生 · 大学生双轨。" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- 可选网络字体（带系统字体回退，离线可正常显示）。如需严格"无外链"，删除下面 3 行 link 即可，字体回退到 system-ui / PingFang SC / 微软雅黑。 -->
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <style>
   :root{
@@ -79,6 +80,12 @@
   /* waveform deco */
   .wave{position:absolute;right:-40px;top:60px;width:340px;height:340px;opacity:.5;pointer-events:none}
   @media(max-width:820px){.wave{display:none}}
+
+  /* scroll hint */
+  .scroll-hint{display:inline-flex;align-items:center;gap:8px;margin-top:42px;color:var(--ink-2);font-size:0.85rem;letter-spacing:.04em;opacity:.7;transition:opacity .2s,transform .2s var(--ease)}
+  .scroll-hint svg{width:18px;height:18px;animation:bob 1.6s var(--ease) infinite}
+  .scroll-hint:hover{opacity:1;transform:translateY(2px)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -323,6 +330,10 @@
       <div class="s"><b>40 小时</b><span>线上+线下灵活累计</span></div>
       <div class="s"><b>先试听 · 后缴费</b><span>科技园统一收付费</span></div>
     </div>
+    <a class="scroll-hint" href="#compare" aria-label="向下滚动查看对比">
+      <span>向下滚动，看震撼对比</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
   </div>
   <svg class="wave" viewBox="0 0 340 340" fill="none">
     <g stroke="var(--accent)" stroke-width="3" stroke-linecap="round" opacity="0.5">
@@ -625,11 +636,12 @@
     <div class="sec-head reveal" style="margin-top:46px;margin-bottom:22px">
       <h2 style="font-size:1.5rem">三种报名渠道</h2>
     </div>
+    <!-- 替换为真实联系方式：邮箱地址、飞书号、腾讯文档链接（目前为占位，已在卡片内标注"待替换"） -->
     <div class="channels-3 reveal">
       <div class="channel-card">
         <div class="top"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><h4>邮箱报名</h4></div>
-        <p>speakup@xxx.edu.cn<br>点击直接发送报名邮件</p>
-        <p class="small">（待替换为真实邮箱）</p>
+        <p><a href="mailto:674348396@qq.com" style="color:var(--accent);text-decoration:none;font-weight:600">674348396@qq.com</a><br>点击直接发送报名邮件</p>
+        <p class="small">（QQ 邮箱，工作日 9:00-18:00 查收）</p>
       </div>
       <div class="channel-card">
         <div class="top"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12 7.7L3 21l1.8-6A8.5 8.5 0 1 1 21 11.5z"/></svg><h4>飞书报名</h4></div>
@@ -748,14 +760,22 @@
   aiSend.addEventListener('click',()=>{handleInput(aiText.value);aiText.value='';});
   aiText.addEventListener('keydown',e=>{if(e.key==='Enter'){handleInput(aiText.value);aiText.value='';}});
 
-  // ---- form submit (front-end demo) ----
+  // ---- form submit: 生成报名邮件（mailto 到官方邮箱） ----
   document.getElementById('submitBtn').addEventListener('click',()=>{
     const name=document.getElementById('f-name').value.trim();
     const phoneV=document.getElementById('f-phone').value.trim();
     if(!name||!phoneV){alert('请填写姓名和手机号，方便我们通知试听～');return;}
+    const email=document.getElementById('f-email').value.trim();
+    const type=document.getElementById('f-type').value;
+    const track=document.getElementById('f-track').value;
+    const note=document.getElementById('f-note').value.trim();
+    const TO='674348396@qq.com';
+    const subject='SpeakUP Lab 报名 - '+name;
+    const body='您好，我要报名 SpeakUP 开口实验室：\n\n姓名：'+name+'\n手机号：'+phoneV+'\n邮箱：'+(email||'（未填）')+'\n报名类型：'+type+'\n意向赛道：'+track+'\n需求描述：'+(note||'（无）')+'\n\n（提交时间：'+new Date().toLocaleString('zh-CN')+'）';
+    window.location.href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     document.querySelectorAll('#signForm .frow, #signForm .field, #signForm .submit, #signForm .note').forEach(el=>el.style.display='none');
     document.getElementById('formSuccess').classList.add('show');
-    // 实际部署：此处可 POST 到腾讯文档/飞书表单或科技园后端
+    // 实际部署：也可改为 POST 到腾讯文档/飞书表单或科技园后端
   });
 </script>
 </body>
