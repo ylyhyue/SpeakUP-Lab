@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpeakUP Lab · 个人开口诊断报告</title>
+<style>
+  :root{
+    --paper:#FBF7F0; --ink:#1A1A1A; --muted:#6B6258; --line:#E4DBCB;
+    --accent:#E8552D; --accent-soft:#FBE9E2; --ok:#2E7D5B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#EFE9DE;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.55;padding:24px}
+  .sheet{background:var(--paper);max-width:820px;margin:0 auto;padding:40px 44px;
+    border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+  .top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--accent);padding-bottom:14px;margin-bottom:22px}
+  .brand{font-size:1.5rem;font-weight:900;letter-spacing:.5px}
+  .brand small{display:block;font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:2px;margin-top:2px}
+  .doc-title{text-align:right;font-size:.9rem;color:var(--muted)}
+  .doc-title b{display:block;font-size:1.05rem;color:var(--ink);font-weight:800}
+  h3{font-size:1rem;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+  .field{border-bottom:1px dashed var(--line);padding:6px 2px;font-size:.92rem}
+  .field label{color:var(--muted);font-size:.78rem;display:block;margin-bottom:2px}
+  .field .val{min-height:20px;font-weight:600}
+  input,textarea,select{font-family:inherit;font-size:.92rem;color:var(--ink);border:none;background:transparent;width:100%;outline:none}
+  input{border-bottom:1px solid var(--line);padding:2px 0}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:4px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);font-weight:700;font-size:.82rem}
+  td.dim{font-weight:700;width:130px}
+  .score{width:64px;text-align:center}
+  .score input{text-align:center;border:1px solid var(--line);border-radius:6px;padding:3px}
+  .ba{display:grid;grid-template-columns:1fr 36px 1fr;gap:0;align-items:stretch;margin-top:4px}
+  .ba>div{padding:12px;border:1px solid var(--line)}
+  .ba .arrow{display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--accent);font-weight:900;background:var(--paper)}
+  .ba h4{margin:0 0 6px;font-size:.85rem;color:var(--muted)}
+  .ba .before{background:#F3ECE0}
+  .ba .after{background:var(--accent-soft)}
+  textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical;background:#FFFDF9}
+  .path{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+  .sign{display:flex;justify-content:space-between;align-items:flex-end;margin-top:26px;font-size:.88rem}
+  .sign .line{border-bottom:1px solid var(--ink);min-width:160px;height:26px;display:inline-block}
+  .foot{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-size:.72rem;color:var(--muted);text-align:center}
+  .foot b{color:var(--ink)}
+  .toolbar{max-width:820px;margin:0 auto 14px;text-align:right}
+  .btn{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer}
+  .btn:hover{opacity:.9}
+  .ph{color:#B8AE9D;font-style:normal}
+  @media print{
+    body{background:#fff;padding:0}
+    .sheet{border:none;box-shadow:none;max-width:none;border-radius:0;padding:18px 24px}
+    .toolbar{display:none}
+    input,textarea,select{background:#fff !important}
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar"><button class="btn" onclick="window.print()">打印 / 导出 PDF</button></div>
+  <div class="sheet">
+
+    <div class="top">
+      <div class="brand">SpeakUP Lab<small>开口实验室 · OPEN YOUR MOUTH</small></div>
+      <div class="doc-title"><b>个人开口诊断报告</b>Trial Diagnostic Report</div>
+    </div>
+
+    <!-- 学员信息 -->
+    <h3>一、学员信息</h3>
+    <div class="grid">
+      <div class="field"><label>姓名</label><div class="val"><input placeholder="学员姓名"></div></div>
+      <div class="field"><label>年龄 / 年级</label><div class="val"><input placeholder="如 高二 / 大三"></div></div>
+      <div class="field"><label>学校</label><div class="val"><input placeholder="如 平顶山一高 / 城建学院"></div></div>
+      <div class="field"><label>所属轨道</label><div class="val">
+        <select><option>高中生轨</option><option>大学生轨</option></select></div></div>
+      <div class="field"><label>试听日期</label><div class="val"><input placeholder="2026-__-__"></div></div>
+      <div class="field"><label>主教练</label><div class="val"><input placeholder="教练姓名"></div></div>
+    </div>
+
+    <!-- 六维能力评估 -->
+    <h3>二、六维开口能力评估<span style="font-weight:400;font-size:.78rem;color:var(--muted)">（每项 1–5 分，5 为最佳）</span></h3>
+    <table>
+      <thead><tr><th>评估维度</th><th class="score">评分</th><th>教练观察（具体表现）</th></tr></thead>
+      <tbody>
+        <tr><td class="dim">开口意愿</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="敢不敢主动张嘴？犹豫时长？被点名时的反应？"></textarea></td></tr>
+        <tr><td class="dim">流利度</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="表达连贯性、停顿、卡壳频率？"></textarea></td></tr>
+        <tr><td class="dim">发音准确度</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="语音语调、易错音、可懂度？"></textarea></td></tr>
+        <tr><td class="dim">逻辑与结构</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="观点是否清晰、有无连接词、能否组织论点？"></textarea></td></tr>
+        <tr><td class="dim">词汇与语法</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="用词丰富度、语法错误类型、是否敢于用新词？"></textarea></td></tr>
+        <tr><td class="dim">AI 协作适应力</td><td class="score"><input type="number" min="1" max="5" placeholder="—"></td>
+          <td><textarea placeholder="能否用 AI 陪练、接受即时反馈、自主练习？"></textarea></td></tr>
+      </tbody>
+    </table>
+
+    <!-- 前后对比 -->
+    <h3>三、试听前后对比</h3>
+    <div class="ba">
+      <div class="before"><h4>试听前 · BEFORE</h4><textarea placeholder="开口前的典型状态，如：不敢举手、怕说错、句子短"></textarea></div>
+      <div class="arrow">→</div>
+      <div class="after"><h4>试听后 · AFTER</h4><textarea placeholder="试听后的突破，如：主动发言、完成 30 秒命题、愿意用 AI 陪练"></textarea></div>
+    </div>
+
+    <!-- 综合诊断 -->
+    <h3>四、综合诊断</h3>
+    <textarea style="min-height:80px" placeholder="整体画像：孩子的核心卡点在哪？最大潜力在哪？一句话总结。例如：基础不差但严重缺乏开口场景，30 秒命题已从‘不敢’到‘能说’，AI 陪练接受度高。"></textarea>
+
+    <!-- 个性化提升路径 -->
+    <h3>五、个性化提升路径</h3>
+    <div class="path">
+      <div class="field"><label>推荐阶段</label><div class="val">
+        <select><option>启航阶段（开口破冰）</option><option>进阶阶段（逻辑表达）</option><option>实战阶段（面试 / 路演 / 辩论）</option></select></div></div>
+      <div class="field"><label>建议频次</label><div class="val"><input placeholder="如 周末 2 次 + 平日 AI 陪练 15min"></div></div>
+      <div class="field" style="grid-column:1/3"><label>阶段性目标（4–8 周可见）</label><div class="val"><textarea style="min-height:50px" placeholder="如：独立完成 2 分钟英文自我介绍；就一个议题做 3 分钟有逻辑陈述"></textarea></div></div>
+      <div class="field" style="grid-column:1/3"><label>下次课焦点</label><div class="val"><textarea style="min-height:50px" placeholder="如：强化连接词使用；用 AI 陪练攻克发音易错音 /θ//ð/"></textarea></div></div>
+    </div>
+
+    <!-- 教练寄语 -->
+    <h3>六、教练寄语</h3>
+    <textarea style="min-height:64px" placeholder="给学员/家长的一段话：肯定进步 + 鼓励 + 下一步期待。语气温暖、具体、不空洞。"></textarea>
+
+    <div class="sign">
+      <div>教练签名：<span class="line"></span></div>
+      <div>日期：<span class="line"></span></div>
+    </div>
+
+    <div class="foot">
+      <b>SpeakUP Lab 开口实验室</b> · 河南城建学院大学科技园 出品 ｜ 试听后先交费再学习<br>
+      本项目与「条码师培训项目」为两个独立项目，定位 / 证书 / 视觉 / 招生分离，仅可在「用英语讲标准 / 项目」场景搭配。
+    </div>
+
+  </div>
+</body>
+</html>
