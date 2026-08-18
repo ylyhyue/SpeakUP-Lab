@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpeakUP Lab 开口实验室 · 项目导航</title>
+<meta name="description" content="用 AI 当陪练，逼孩子和大学生开口说英语的实用项目。SpeakUP Lab 项目文件导航页。">
+<style>
+  :root{
+    --paper:#F4ECDF;     /* 暖纸底 */
+    --ink:#0F0F12;       /* 墨黑 */
+    --ink-2:#1f1f24;
+    --on-paper-muted:#6b6457;
+    --line:rgba(15,15,18,.12);
+    --red:#E14B3A;       /* 信号红橙 */
+    --red-2:#FF6A4D;
+    --warm:#F2C7A7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:60px 32px 100px}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--red)}
+  /* ---------- header ---------- */
+  .top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+  .logo{width:32px;height:32px;background:var(--ink);border-radius:8px;display:grid;place-items:center;color:var(--paper);font-weight:900}
+  .repo{font-size:.85rem;color:var(--on-paper-muted);border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+  /* ---------- hero ---------- */
+  .hero{margin-bottom:80px}
+  .eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:18px}
+  h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:24px;max-width:18ch}
+  h1 em{font-style:normal;background:linear-gradient(180deg,transparent 60%,var(--warm) 60%);padding:0 4px}
+  .sub{font-size:1.1rem;color:var(--ink-2);max-width:60ch;margin-bottom:32px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);padding:14px 22px;border-radius:999px;font-weight:700;transition:transform .2s}
+  .cta:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+  .cta svg{width:16px;height:16px}
+  /* ---------- two pillars ---------- */
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:80px}
+  .pillar{border:1px solid var(--line);border-radius:18px;padding:28px;background:rgba(255,255,255,.4)}
+  .pillar .num{font-size:.85rem;color:var(--red);font-weight:700;letter-spacing:.1em;margin-bottom:14px}
+  .pillar h3{font-size:1.3rem;margin-bottom:10px;font-weight:800}
+  .pillar p{color:var(--ink-2);font-size:.95rem}
+  @media(max-width:680px){.pillars{grid-template-columns:1fr}}
+  /* ---------- files ---------- */
+  .sec-head{margin-bottom:32px}
+  .sec-head h2{font-size:1.6rem;font-weight:800;letter-spacing:-.01em}
+  .sec-head p{color:var(--on-paper-muted);margin-top:6px;font-size:.95rem}
+  .files{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:60px}
+  .file{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(255,255,255,.5);transition:all .2s;display:flex;flex-direction:column;gap:6px}
+  .file:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 30px rgba(15,15,18,.08)}
+  .file .tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--on-paper-muted);margin-bottom:6px}
+  .file .tag .dot{width:6px;height:6px;border-radius:999px;background:var(--red)}
+  .file h4{font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+  .file p{color:var(--ink-2);font-size:.88rem;flex:1}
+  .file .go{margin-top:10px;font-size:.85rem;font-weight:700;color:var(--red);display:inline-flex;align-items:center;gap:4px}
+  @media(max-width:680px){.files{grid-template-columns:1fr}}
+  /* ---------- dual track ---------- */
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:80px}
+  .track{padding:24px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.35)}
+  .track h4{font-size:1.1rem;font-weight:800;margin-bottom:6px}
+  .track .who{font-size:.82rem;color:var(--red);font-weight:700;letter-spacing:.05em;margin-bottom:14px}
+  .track p{color:var(--ink-2);font-size:.92rem}
+  @media(max-width:680px){.tracks{grid-template-columns:1fr}}
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding-top:30px;font-size:.85rem;color:var(--on-paper-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--ink);border-bottom:1px dashed var(--line)}
+  footer a:hover{color:var(--red);border-color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand"><div class="logo">S</div><span>SpeakUP Lab</span></div>
+    <div class="repo">github.com/ylyhyue/SpeakUP-Lab</div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">SpeakUP Lab · 开口实验室</div>
+    <h1>不说完美的英语，<br>只说<em>敢开口</em>的英语。</h1>
+    <p class="sub">用 AI 当陪练，逼孩子和大学生开口说英语的实用项目。
+      以河南城建学院大学科技园为办学主体，平顶山落地。
+    </p>
+    <a class="cta" href="./SpeakUP-Lab-开口实验室.html">
+      查看主展示页
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </section>
+
+  <section class="pillars">
+    <div class="pillar">
+      <div class="num">Pillar 01</div>
+      <h3>开口即生产力</h3>
+      <p>用真实场景（面试 / 路演 / 议题辩论）逼孩子开口，为未来工作多一种可能。</p>
+    </div>
+    <div class="pillar">
+      <div class="num">Pillar 02</div>
+      <h3>AI 做陪练</h3>
+      <p>用 AI 降低开口恐惧、给即时反馈、顺手生成求职材料。河南城建学院人工智能学院出品。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>项目文件</h2>
+      <p>全部为单文件、零外部依赖，点击直接打开。</p>
+    </div>
+    <div class="files">
+      <a class="file" href="./SpeakUP-Lab-开口实验室.html">
+        <div class="tag"><span class="dot"></span>主展示页</div>
+        <h4>SpeakUP Lab 开口实验室</h4>
+        <p>宣传网页：前后对比滑块、模拟课、AI 陪练演示、双轨、在线报名（可发信到 674348396@qq.com）。</p>
+        <span class="go">打开 →</span>
+      </a>
+      <a class="file" href="./SpeakUP-Lab-个人诊断报告模板.html">
+        <div class="tag"><span class="dot"></span>可填写模板</div>
+        <h4>个人开口诊断报告</h4>
+        <p>试听课后产出物：6 维度雷达图、三大维度点评、AI 工具建议、40h 路径建议。浏览器可打印/PDF。</p>
+        <span class="go">打开 →</span>
+      </a>
+      <a class="file" href="./SpeakUP英文开口营-立项方案与双轨大纲.md">
+        <div class="tag"><span class="dot"></span>立项方案</div>
+        <h4>完整立项方案与双轨大纲</h4>
+        <p>定位/合规/40h 灵活模型/双轨大纲/真实议题库/5 套 AI 提示词模板/缘分制 SOP/MVP/风险边界。</p>
+        <span class="go">打开 →</span>
+      </a>
+      <a class="file" href="./SpeakUP-Lab-引流短视频脚本.md">
+        <div class="tag"><span class="dot"></span>漏斗物料</div>
+        <h4>引流短视频脚本（3 条）</h4>
+        <p>开口前后对比 / AI 陪练实测 / 思辨模拟课切片。含分镜表、拍摄要点、平顶山本地化。</p>
+        <span class="go">打开 →</span>
+      </a>
+      <a class="file" href="./SpeakUP-Lab-试听体验课-1.5h脚本.md">
+        <div class="tag"><span class="dot"></span>漏斗物料</div>
+        <h4>试听体验课 1.5h 脚本</h4>
+        <p>破冰→开口挑战→真实议题辩论→AI 陪练演示→个人诊断→答疑转化，全流程可直接执行。</p>
+        <span class="go">打开 →</span>
+      </a>
+      <a class="file" href="./assets/">
+        <div class="tag"><span class="dot"></span>资源目录</div>
+        <h4>assets / 素材</h4>
+        <p>刘佳浩学长教练合影、模拟案例配图等。</p>
+        <span class="go">浏览 →</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>双轨设计</h2>
+      <p>同套底层锚点（开口 + AI），不同切入人群。</p>
+    </div>
+    <div class="tracks">
+      <div class="track">
+        <div class="who">TRACK 01 · 高中</div>
+        <h4>高中生轨</h4>
+        <p>以平顶山一高为主。缺表达自信与逻辑，为留学 / 综评 / 未来竞争力蓄水。</p>
+      </div>
+      <div class="track">
+        <div class="who">TRACK 02 · 大学</div>
+        <h4>大学生轨</h4>
+        <p>以河南城建学院学生为主。普遍"哑巴英语"，需面试 / 路演 / 讲项目时开口即战。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>SpeakUP Lab · 开口实验室 · 2026</div>
+    <div>用 AI 让孩子敢开口</div>
+  </footer>
+
+</div>
+</body>
+</html>
