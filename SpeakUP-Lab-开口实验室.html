@@ -152,6 +152,7 @@
   .poster .play{width:60px;height:60px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -8px var(--accent)}
   .poster .play::after{content:"";border-left:16px solid white;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
   .poster .badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:var(--ink);font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:999px}
+  .poster .badge.real{top:auto;bottom:12px;left:12px;background:var(--accent);color:#fff;border:none;box-shadow:0 6px 16px -6px var(--accent)}
   .poster .len{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.55);color:white;font-size:0.72rem;padding:3px 9px;border-radius:999px}
   .lesson .body{padding:18px 20px 22px}
   .lesson .body h4{font-size:1.12rem;margin-bottom:6px}
@@ -414,17 +415,17 @@
       <p>把课堂切成短视频，让你先看到"开口"长什么样。点开即看，免费。</p>
     </div>
     <div class="lessons">
-      <div class="lesson reveal" data-title="模拟面试 · Tell me about yourself" data-cap="1.5 分钟 · 入门 · 开口第一关：用英语介绍自己。AI 陪练实时纠正语法与表达。">
-        <div class="poster"><span class="badge">模拟课 01</span><div class="play"></div><span class="len">1:32</span></div>
-        <div class="body"><h4>模拟面试 · 自我介绍</h4><p>开口第一关：用英语说出"我是谁"。</p></div>
+      <div class="lesson reveal" data-title="路演实战 · 用英语讲你的项目" data-cap="2.5 分钟 · 实战 · 大学生轨核心：用英语路演自己的 AI / 专业项目。">
+        <div class="poster"><span class="badge">模拟课 01</span><div class="play"></div><span class="len">2:41</span></div>
+        <div class="body"><h4>路演实战 · 讲项目</h4><p>大学生轨：开口讲项目，为求职加码。</p></div>
       </div>
       <div class="lesson reveal" data-title="议题辩论 · AI 会让哪些工作消失？" data-cap="2 分钟 · 进阶 · 真实议题思辨。正反方轮替，AI 当反方逼你临场反应。">
         <div class="poster"><span class="badge">模拟课 02</span><div class="play"></div><span class="len">2:08</span></div>
         <div class="body"><h4>议题辩论 · AI 与工作</h4><p>真实议题：敢有观点，更要敢表达。</p></div>
       </div>
-      <div class="lesson reveal" data-title="路演实战 · 用英语讲你的项目" data-cap="2.5 分钟 · 实战 · 大学生轨核心：用英语路演自己的 AI / 专业项目。">
-        <div class="poster"><span class="badge">模拟课 03</span><div class="play"></div><span class="len">2:41</span></div>
-        <div class="body"><h4>路演实战 · 讲项目</h4><p>大学生轨：开口讲项目，为求职加码。</p></div>
+      <div class="lesson reveal" data-video="https://e9b185d0498c42faa6bc8ae197afaa4b.sh2.agentos-app.net/assets/liujiahao-speech.mp4" data-title="模拟面试 · Tell me about yourself" data-cap="1.5 分钟 · 入门 · 开口第一关：用英语介绍自己。AI 陪练实时纠正语法与表达。（真实样例：刘佳浩学长英语演讲）">
+        <div class="poster"><span class="badge">模拟课 03</span><span class="badge real">真实录像</span><div class="play"></div><span class="len">6:35</span></div>
+        <div class="body"><h4>模拟面试 · 学长实战</h4><p>开口第一关：用英语说出"我是谁"。刘佳浩学长真实英语演讲。</p></div>
       </div>
     </div>
 
@@ -678,7 +679,7 @@
 <div class="modal" id="modal">
   <div class="modal-box" style="position:relative">
     <button class="modal-close" id="modalClose">×</button>
-    <!-- 替换为真实视频：将下方 .modal-vid 内容替换为 <video src="你的视频地址" controls autoplay style="width:100%"></video> -->
+    <!-- 真实视频：带 data-video 属性的课程卡点击后自动内嵌 <video> 播放；无 data-video 的卡片显示此占位。 -->
     <div class="modal-vid" id="modalVid">[ 模拟视频位 · 可替换真实课程录像 ]</div>
     <div class="modal-cap"><h4 id="modalTitle"></h4><p id="modalCap" style="color:var(--on-dark-muted);font-size:.9rem;margin-top:6px"></p></div>
   </div>
@@ -711,15 +712,27 @@
 
   // ---- lesson modal ----
   const modal=document.getElementById('modal');
+  const modalVid=document.getElementById('modalVid');
+  function closeModal(){
+    modal.classList.remove('show');
+    // 关闭时停止并清除视频，避免后台继续播放
+    modalVid.innerHTML='[ 模拟视频位 · 可替换真实课程录像 ]';
+  }
   document.querySelectorAll('.lesson').forEach(l=>{
     l.addEventListener('click',()=>{
       document.getElementById('modalTitle').textContent=l.dataset.title;
       document.getElementById('modalCap').textContent=l.dataset.cap;
+      const v=l.dataset.video;
+      if(v){
+        modalVid.innerHTML='<video src="'+v+'" controls autoplay playsinline style="width:100%;height:100%;display:block;background:#000"></video>';
+      }else{
+        modalVid.innerHTML='[ 模拟视频位 · 可替换真实课程录像 ]';
+      }
       modal.classList.add('show');
     });
   });
-  document.getElementById('modalClose').addEventListener('click',()=>modal.classList.remove('show'));
-  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show');});
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 
   // ---- AI 陪练 simulated chat ----
   const phone=document.getElementById('phone');
