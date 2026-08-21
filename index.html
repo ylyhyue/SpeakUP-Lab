@@ -293,7 +293,7 @@
   .modal-box{background:var(--dark);border-radius:18px;max-width:860px;width:100%;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
   /* 竖屏视频旋转后变成横屏显示，所以容器改成横屏；视频元素自身旋转 90°，用 width:auto + height:100% 让旋转后的画面填满 */
   .modal-vid{background:#000;display:flex;align-items:center;justify-content:center;color:var(--on-dark-muted);font-size:0.95rem;text-align:center;padding:0;position:relative;overflow:hidden;aspect-ratio:16/9;max-height:82vh;min-height:340px}
-  .modal-vid video{width:auto;height:100%;max-width:100%;max-height:82vh;object-fit:contain;display:block;background:#000;transform:rotate(90deg)}
+  .modal-vid video{width:auto;height:100%;max-width:100%;max-height:82vh;object-fit:contain;display:block;background:#000;transform:rotate(-90deg)}
   .fs-btn{position:absolute;right:14px;bottom:14px;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 15px;font-size:.82rem;cursor:pointer;z-index:6;backdrop-filter:blur(4px);transition:background .2s}
   .fs-btn:hover{background:rgba(0,0,0,.85)}
   .modal-cap{padding:18px 22px;color:var(--on-dark)}
