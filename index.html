@@ -286,6 +286,19 @@
   .channel-card p{font-size:.9rem;color:var(--ink-2);line-height:1.6}
   .channel-card .small{font-size:.8rem;color:var(--muted);margin-top:8px}
 
+  /* ---------- RESOURCES ---------- */
+  .resources{background:var(--paper-2)}
+  .res-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:820px){.res-grid{grid-template-columns:1fr}}
+  .res-card{border:1px solid var(--line);border-radius:20px;padding:30px;background:white;display:flex;gap:20px;align-items:flex-start;transition:transform .3s var(--ease),box-shadow .3s var(--ease);text-decoration:none;color:inherit}
+  .res-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(0,0,0,.35)}
+  .res-ic{flex:0 0 auto;width:54px;height:54px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center}
+  .res-ic svg{width:26px;height:26px;stroke:var(--accent-ink)}
+  .res-card .body h4{font-size:1.16rem;margin-bottom:8px;line-height:1.3}
+  .res-card .body p{color:var(--ink-2);font-size:.92rem;line-height:1.6}
+  .res-card .go{margin-top:14px;display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-weight:600;font-size:.9rem}
+  .res-card .tag{display:inline-block;font-size:.72rem;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+
   /* modal — 视频为竖屏录制，旋转 90° 让人物正立 */
   .modal{position:fixed;inset:0;z-index:100;background:rgba(20,18,16,.78);display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)}
   .modal.show{display:flex;animation:fade .3s var(--ease)}
@@ -311,6 +324,7 @@
       <a href="#compare">前后对比</a>
       <a href="#pillars">两大亮点</a>
       <a href="#lessons">模拟课</a>
+      <a href="#resources">免费资源</a>
       <a href="#tracks">双轨</a>
       <a href="#coaches">学长榜样</a>
       <a href="#stories">成长案例</a>
@@ -452,6 +466,37 @@
           <button id="aiSend">发送</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="resources">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Free Resources</div>
+      <h2>免费配套资源 · 课后自己练</h2>
+      <p>两套经典英语素材，课余随时看。点开即跳 B 站，不收费——课上看模拟课，课下用经典"磨耳朵"。</p>
+    </div>
+    <div class="res-grid">
+      <a class="res-card reveal" href="https://b23.tv/QU8dhyF" target="_blank" rel="noopener">
+        <div class="res-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></div>
+        <div class="body">
+          <span class="tag">生活 · 日常口语</span>
+          <h4>《走遍美国》78 集全（中英双语字幕）</h4>
+          <p>经典情景美语，覆盖日常生活全场景。双语字幕，边看边学地道表达，适合打底子、练语感。</p>
+          <span class="go">去 B 站观看 →</span>
+        </div>
+      </a>
+      <a class="res-card reveal" href="https://b23.tv/9xgQXVz" target="_blank" rel="noopener">
+        <div class="res-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></div>
+        <div class="body">
+          <span class="tag">职场 · 商务口语</span>
+          <h4>BBC 商务英语口语动画课程（合辑）</h4>
+          <p>职场干货动画，讲邮件、会议、电话、谈判等真实商务场景。为求职、实习提前储备表达。</p>
+          <span class="go">去 B 站观看 →</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
